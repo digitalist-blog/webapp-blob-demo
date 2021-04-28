@@ -1,17 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+@model UploadfileModel
 
 <div class="text-center">
     <h1 class="display-4">Welcome to BLOB Demo</h1>
     <p>This application demonstrates how to upload and download files to Azure BLOB Storage.</p>
     <p>Refer to the documentation for setup instructions.</p>
     <h4>Upload a file:</h4>
-    <form>
+    <form asp-action="UploadFile" enctype="multipart/form-data">
         <div class="form-row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <input type="file" class="form-control-file" id="UploadFile">
+                <input asp-for="file" type="file" class="form-control-file" id="UploadFile">
             </div>
             <div class="col-sm-4 text-left">
                 <button type="submit" class="btn btn-primary mb-2">Upload!</button>

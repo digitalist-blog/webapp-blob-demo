@@ -1,6 +1,8 @@
 @{
     ViewData["Title"] = "List BLOBs";
 }
+@model BlobModelCollection
+
 <h1>List of BLOBS Uploaded</h1>
 
 <table class="table table-hover">
@@ -13,23 +15,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>File1.txt</td>
-      <td>1214</td>
-      <td style="text-align: center;"><a href="#"><i class="fas fa-download"></i></a></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>File2.csv</td>
-      <td>1315</td>
-      <td style="text-align: center;"><a href="#"><i class="fas fa-download"></i></a></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>File3.xml</td>
-      <td>1519</td>
-      <td style="text-align: center;"><a href="#"><i class="fas fa-download"></i></a></td>
-    </tr>
+    @{ int n = 0; }
+    @foreach (var blob in Model.Blobs)
+    {
+      { n++; }
+      <tr>
+        <th scope="row">@n</th>
+        <td>@blob.BlobName</td>
+        <td>@blob.Size</td>
+        <td style="text-align: center;"><a asp-area="" asp-controller="Home" asp-action="Download" asp-route-itemid="@blob.BlobName"><i class="fas fa-download"></i></a></td>
+      </tr>
+    }
   </tbody>
 </table>
